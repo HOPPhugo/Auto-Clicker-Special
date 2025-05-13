@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Runtime.InteropServices;
@@ -15,6 +16,27 @@ namespace Auto_Clicker_Special
 {
     public partial class Form1 : Form
     {
+        private const int WH_KEYBOARD_LL = 13;
+        private const int WM_KEYDOWN = 0x0100;
+
+        private static LowLevelKeyboardProc _proc = HookCallback;
+        private static IntPtr _hookID = IntPtr.Zero;
+
+        private delegate IntPtr LowLevelKeyboardProc(int nCode, IntPtr wParam, IntPtr lParam);
+
+        [DllImport("user32.dll")]
+        private static extern IntPtr SetWindowsHookEx(int idHook, LowLevelKeyboardProc lpfn, IntPtr hMod, uint dwThreadId);
+
+        [DllImport("user32.dll")]
+        [return: MarshalAs(UnmanagedType.Bool)]
+        private static extern bool UnhookWindowsHookEx(IntPtr hhk);
+
+        [DllImport("user32.dll")]
+        private static extern IntPtr CallNextHookEx(IntPtr hhk, int nCode, IntPtr wParam, IntPtr lParam);
+
+        [DllImport("kernel32.dll")]
+        private static extern IntPtr GetModuleHandle(string lpModuleName);
+
         [DllImport("user32.dll", CharSet = CharSet.Auto, CallingConvention = CallingConvention.StdCall)]
         public static extern void mouse_event(uint dwFlags, int dx, int dy, uint cButtons, uint dwExtraInfo);
         private const uint MOUSEEVENTF_LEFTDOWN = 0x02;
@@ -25,8 +47,55 @@ namespace Auto_Clicker_Special
         public Form1()
         {
             InitializeComponent();
+            _hookID = SetHook(_proc);
+        }
+        private static IntPtr HookCallback(int nCode, IntPtr wParam, IntPtr lParam)
+        {
+            if (nCode >= 0 && wParam == (IntPtr)WM_KEYDOWN)
+            {
+                int vkCode = Marshal.ReadInt32(lParam);
+                // Exemple : Touche F6 pour toggle
+                if (vkCode == (int)Keys.F6)
+                {
+                    // Toggle activé ou désactivé
+                    Application.OpenForms[0].BeginInvoke((Action)(() =>
+                    {
+                        Form1 form = (Form1)Application.OpenForms[0];
+                        form.ToggleClicker();
+                    }));
+                }
+            }
+            return CallNextHookEx(_hookID, nCode, wParam, lParam);
+        }
+        protected override void OnFormClosed(FormClosedEventArgs e)
+        {
+            UnhookWindowsHookEx(_hookID);
+            base.OnFormClosed(e);
         }
 
+        public void ToggleClicker()
+        {
+            Cliker = !Cliker;
+            if (Cliker)
+            {
+                autoCliker.Start();
+                button1.BackColor = Color.Blue;
+            }
+            else
+            {
+                autoCliker.Stop();
+                button1.BackColor = Color.White;
+            }
+        }
+
+        private static IntPtr SetHook(LowLevelKeyboardProc proc)
+        {
+            using (Process curProcess = Process.GetCurrentProcess())
+            using (ProcessModule curModule = curProcess.MainModule)
+            {
+                return SetWindowsHookEx(WH_KEYBOARD_LL, proc, GetModuleHandle(curModule.ModuleName), 0);
+            }
+        }
         private async void button2_Click(object sender, EventArgs e)
         {
             MessageBox.Show("SHUT UP, THIS IS THE BEST AUTO CLICKER EVER CREATED !!!!");
@@ -75,6 +144,16 @@ namespace Auto_Clicker_Special
             if (Cliker == true)
             {
                 DoMouseClick();
+                DoMouseClick1();
+                DoMouseClick2();
+                DoMouseClick3();
+                DoMouseClick4();
+                DoMouseClick5();
+                DoMouseClick6();
+                DoMouseClick7();
+                DoMouseClick8();
+                DoMouseClick9();
+                DoMouseClick10();
             }
             
         }
@@ -85,21 +164,79 @@ namespace Auto_Clicker_Special
                 int Y = Cursor.Position.Y;
                 mouse_event(MOUSEEVENTF_LEFTDOWN | MOUSEEVENTF_LEFTUP, X, Y, 0, 0);
         }
+        public void DoMouseClick1()
+        {
+            //simule un clic a la position courante du curseur
+            int X = Cursor.Position.X;
+            int Y = Cursor.Position.Y;
+            mouse_event(MOUSEEVENTF_LEFTDOWN | MOUSEEVENTF_LEFTUP, X, Y, 0, 0);
+        }
+        public void DoMouseClick2()
+        {
+            //simule un clic a la position courante du curseur
+            int X = Cursor.Position.X;
+            int Y = Cursor.Position.Y;
+            mouse_event(MOUSEEVENTF_LEFTDOWN | MOUSEEVENTF_LEFTUP, X, Y, 0, 0);
+        }
+        public void DoMouseClick3()
+        {
+            //simule un clic a la position courante du curseur
+            int X = Cursor.Position.X;
+            int Y = Cursor.Position.Y;
+            mouse_event(MOUSEEVENTF_LEFTDOWN | MOUSEEVENTF_LEFTUP, X, Y, 0, 0);
+        }
+        public void DoMouseClick4()
+        {
+            //simule un clic a la position courante du curseur
+            int X = Cursor.Position.X;
+            int Y = Cursor.Position.Y;
+            mouse_event(MOUSEEVENTF_LEFTDOWN | MOUSEEVENTF_LEFTUP, X, Y, 0, 0);
+        }
+        public void DoMouseClick5()
+        {
+            //simule un clic a la position courante du curseur
+            int X = Cursor.Position.X;
+            int Y = Cursor.Position.Y;
+            mouse_event(MOUSEEVENTF_LEFTDOWN | MOUSEEVENTF_LEFTUP, X, Y, 0, 0);
+        }
+        public void DoMouseClick6()
+        {
+            //simule un clic a la position courante du curseur
+            int X = Cursor.Position.X;
+            int Y = Cursor.Position.Y;
+            mouse_event(MOUSEEVENTF_LEFTDOWN | MOUSEEVENTF_LEFTUP, X, Y, 0, 0);
+        }
+        public void DoMouseClick7()
+        {
+            //simule un clic a la position courante du curseur
+            int X = Cursor.Position.X;
+            int Y = Cursor.Position.Y;
+            mouse_event(MOUSEEVENTF_LEFTDOWN | MOUSEEVENTF_LEFTUP, X, Y, 0, 0);
+        }
+        public void DoMouseClick8()
+        {
+            //simule un clic a la position courante du curseur
+            int X = Cursor.Position.X;
+            int Y = Cursor.Position.Y;
+            mouse_event(MOUSEEVENTF_LEFTDOWN | MOUSEEVENTF_LEFTUP, X, Y, 0, 0);
+        }
+        public void DoMouseClick9()
+        {
+            //simule un clic a la position courante du curseur
+            int X = Cursor.Position.X;
+            int Y = Cursor.Position.Y;
+            mouse_event(MOUSEEVENTF_LEFTDOWN | MOUSEEVENTF_LEFTUP, X, Y, 0, 0);
+        }
+        public void DoMouseClick10()
+        {
+            //simule un clic a la position courante du curseur
+            int X = Cursor.Position.X;
+            int Y = Cursor.Position.Y;
+            mouse_event(MOUSEEVENTF_LEFTDOWN | MOUSEEVENTF_LEFTUP, X, Y, 0, 0);
+        }
 
         private void Key_Down(object sender, KeyEventArgs e)
         {
-            if (e.KeyCode == Keys.F6 && Cliker == false) 
-            {
-                Cliker = true;
-                MessageBox.Show("overt");
-                return;
-            }
-            if (e.KeyCode == Keys.F6 && Cliker == true) 
-            {
-                Cliker = false;
-                MessageBox.Show("fwew");
-                return;
-            }
         }
     }
 }

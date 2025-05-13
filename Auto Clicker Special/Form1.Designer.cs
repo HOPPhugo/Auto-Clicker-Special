@@ -2,6 +2,7 @@
 {
     partial class Form1
     {
+
         /// <summary>
         /// Variable nécessaire au concepteur.
         /// </summary>
@@ -230,7 +231,7 @@
             this.Controls.Add(this.label2);
             this.Name = "Form1";
             this.Text = "Form1";
-            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Key_Down);
+            button1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Key_Down);
             this.ResumeLayout(false);
             this.PerformLayout();
 
