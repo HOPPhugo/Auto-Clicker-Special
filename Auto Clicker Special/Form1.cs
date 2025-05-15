@@ -172,26 +172,26 @@ namespace Auto_Clicker_Special
 
         // Fonctions de clics répétées (simulent des clics à la position du curseur)
         public void DoMouseClick() { int X = Cursor.Position.X; int Y = Cursor.Position.Y; mouse_event(MOUSEEVENTF_LEFTDOWN | MOUSEEVENTF_LEFTUP, X, Y, 0, 0); }
-        public void DoMouseClick1() { DoMouseClick(); }
-        public void DoMouseClick2() { DoMouseClick(); }
-        public void DoMouseClick3() { DoMouseClick(); }
-        public void DoMouseClick4() { DoMouseClick(); }
-        public void DoMouseClick5() { DoMouseClick(); }
-        public void DoMouseClick6() { DoMouseClick(); }
-        public void DoMouseClick7() { DoMouseClick(); }
-        public void DoMouseClick8() { DoMouseClick(); }
-        public void DoMouseClick9() { DoMouseClick(); }
-        public void DoMouseClick10() { DoMouseClick(); }
-        public void DoMouseClick11() { DoMouseClick(); }
-        public void DoMouseClick12() { DoMouseClick(); }
-        public void DoMouseClick13() { DoMouseClick(); }
-        public void DoMouseClick14() { DoMouseClick(); }
-        public void DoMouseClick15() { DoMouseClick(); }
-        public void DoMouseClick16() { DoMouseClick(); }
-        public void DoMouseClick17() { DoMouseClick(); }
-        public void DoMouseClick18() { DoMouseClick(); }
-        public void DoMouseClick19() { DoMouseClick(); }
-        public void DoMouseClick20() { DoMouseClick(); }
+        public void DoMouseClick1() { DoMouseClick(); DoMouseClick(); }
+        public void DoMouseClick2() { DoMouseClick(); DoMouseClick(); }
+        public void DoMouseClick3() { DoMouseClick(); DoMouseClick(); }
+        public void DoMouseClick4() { DoMouseClick(); DoMouseClick(); }
+        public void DoMouseClick5() { DoMouseClick(); DoMouseClick(); }
+        public void DoMouseClick6() { DoMouseClick(); DoMouseClick(); }
+        public void DoMouseClick7() { DoMouseClick(); DoMouseClick(); }
+        public void DoMouseClick8() { DoMouseClick(); DoMouseClick(); }
+        public void DoMouseClick9() { DoMouseClick(); DoMouseClick(); }
+        public void DoMouseClick10() { DoMouseClick(); DoMouseClick(); }
+        public void DoMouseClick11() { DoMouseClick(); DoMouseClick(); }
+        public void DoMouseClick12() { DoMouseClick(); DoMouseClick(); }
+        public void DoMouseClick13() { DoMouseClick(); DoMouseClick(); }
+        public void DoMouseClick14() { DoMouseClick(); DoMouseClick(); }
+        public void DoMouseClick15() { DoMouseClick(); DoMouseClick(); }
+        public void DoMouseClick16() { DoMouseClick(); DoMouseClick(); }
+        public void DoMouseClick17() { DoMouseClick(); DoMouseClick(); }
+        public void DoMouseClick18() { DoMouseClick(); DoMouseClick(); }
+        public void DoMouseClick19() { DoMouseClick(); DoMouseClick(); }
+        public void DoMouseClick20() { DoMouseClick(); DoMouseClick(); }
 
         // Ne fait rien (hook vide pour événement clavier)
         private void Key_Down(object sender, KeyEventArgs e) { }
