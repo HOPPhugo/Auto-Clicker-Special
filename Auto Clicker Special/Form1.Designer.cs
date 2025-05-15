@@ -46,6 +46,10 @@
             this.button2 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
             this.autoCliker = new System.Windows.Forms.Timer(this.components);
+            this.label13 = new System.Windows.Forms.Label();
+            this.label14 = new System.Windows.Forms.Label();
+            this.temps = new System.Windows.Forms.Timer(this.components);
+            this.button4 = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // label1
@@ -131,6 +135,7 @@
             this.button1.Text = "Training";
             this.button1.UseVisualStyleBackColor = false;
             this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.button1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Key_Down);
             // 
             // label7
             // 
@@ -209,11 +214,48 @@
             this.autoCliker.Interval = 1;
             this.autoCliker.Tick += new System.EventHandler(this.autoCliker_Tick);
             // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.Location = new System.Drawing.Point(731, 296);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(54, 13);
+            this.label13.TabIndex = 17;
+            this.label13.Text = "CLicks : 0";
+            // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.label14.Location = new System.Drawing.Point(734, 323);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(48, 13);
+            this.label14.TabIndex = 18;
+            this.label14.Text = "Timer : 0";
+            // 
+            // temps
+            // 
+            this.temps.Enabled = true;
+            this.temps.Interval = 1000;
+            this.temps.Tick += new System.EventHandler(this.temps_Tick);
+            // 
+            // button4
+            // 
+            this.button4.Location = new System.Drawing.Point(425, 282);
+            this.button4.Name = "button4";
+            this.button4.Size = new System.Drawing.Size(58, 61);
+            this.button4.TabIndex = 19;
+            this.button4.Text = "stop";
+            this.button4.UseVisualStyleBackColor = true;
+            this.button4.Click += new System.EventHandler(this.button4_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.button4);
+            this.Controls.Add(this.label14);
+            this.Controls.Add(this.label13);
             this.Controls.Add(this.button3);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.label12);
@@ -231,7 +273,7 @@
             this.Controls.Add(this.label2);
             this.Name = "Form1";
             this.Text = "Form1";
-            button1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Key_Down);
+            this.Load += new System.EventHandler(this.Form1_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -255,6 +297,10 @@
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.Timer autoCliker;
+        private System.Windows.Forms.Label label13;
+        private System.Windows.Forms.Label label14;
+        private System.Windows.Forms.Timer temps;
+        private System.Windows.Forms.Button button4;
     }
 }
 
