@@ -110,7 +110,7 @@ namespace Auto_Clicker_Special
             }
         }
 
-        // Bouton 2 - Contenu volontairement hostile et offensant (à ne **jamais** utiliser dans un vrai programme)
+        // Bouton 2 - Contenu volontairement hostile et offensant
         private async void button2_Click(object sender, EventArgs e)
         {
             // Affiche une série de messages désagréables et ferme l'application
@@ -124,7 +124,7 @@ namespace Auto_Clicker_Special
             await Task.Delay(3000);
             MessageBox.Show(":(");
             MessageBox.Show("bad guy !");
-            MessageBox.Show("go play \"adopt me\" little gay kid"); // ⚠️ Message extrêmement inapproprié
+            MessageBox.Show("go play \"adopt me\" little gay kid");
             Application.Exit();
         }
 
@@ -144,20 +144,17 @@ namespace Auto_Clicker_Special
         // Bouton principal qui change l’état et compte les clics
         private void button1_Click(object sender, EventArgs e)
         {
+            // choisi une couleur aléatoir
+            Random randomGen = new Random();
+            KnownColor[] names = (KnownColor[])Enum.GetValues(typeof(KnownColor));
+            KnownColor randomColorName = names[randomGen.Next(names.Length)];
+            Color randomColor = Color.FromKnownColor(randomColorName);
             train = true;
             clicks = clicks + 1;
             label13.Text = "Clicks : " + clicks;
 
-            if (button1.BackColor == Color.White)
-            {
-                button1.BackColor = Color.Blue;
-                return;
-            }
-            else
-            {
-                button1.BackColor = Color.White;
-                return;
-            }
+                button1.BackColor = Color.FromKnownColor(randomColorName);
+            
         }
 
         // Tick du timer de l'auto clicker, fait 20 clics rapides
@@ -230,6 +227,33 @@ namespace Auto_Clicker_Special
                 chrono = 0;
                 train = false;
             }
+        }
+
+        private void label14_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label13_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label7_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        // redirige sur mon github
+        private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            System.Diagnostics.Process.Start("https://github.com/HOPPhugo");
+        }
+
+        //expliquation de comment calculer les cps
+        private void label5_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("How to calcul the cps?\n\nClick per secondes (CPS) = Total number of clicks / Total time in secondes\nIf you clicked 30time in 5 secondes. \nThat mean you clicked 6time per seondes.");
         }
     }
 }
