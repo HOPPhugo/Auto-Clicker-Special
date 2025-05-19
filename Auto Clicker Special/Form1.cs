@@ -52,6 +52,7 @@ namespace Auto_Clicker_Special
         int clicks = 0;
         int chrono = 0;
         bool train = false;
+        bool boocle = false;
 
         public Form1()
         {
@@ -110,21 +111,15 @@ namespace Auto_Clicker_Special
             }
         }
 
-        // Bouton 2 - Contenu volontairement hostile et offensant
+        // Bouton 2
         private async void button2_Click(object sender, EventArgs e)
         {
             // Affiche une série de messages désagréables et ferme l'application
-            MessageBox.Show("SHUT UP, THIS IS THE BEST AUTO CLICKER EVER CREATED !!!!");
-            MessageBox.Show("YOU ARE THE DUMBEST KID I'VE SEEN IN MY ENTIRE LIFE !");
-            MessageBox.Show("you are BAD :(");
-            MessageBox.Show("you have a ridicul life");
-            MessageBox.Show("you are cringe !");
-            MessageBox.Show("good bye, have a bad day :(:(:(");
+            MessageBox.Show("NO!! This is the BEST AUTO CLICKER NEVER CREATED !");
+            MessageBox.Show("GOOD BYE !");
             this.Hide();
             await Task.Delay(3000);
             MessageBox.Show(":(");
-            MessageBox.Show("bad guy !");
-            MessageBox.Show("go play \"adopt me\" little gay kid");
             Application.Exit();
         }
 
@@ -144,16 +139,19 @@ namespace Auto_Clicker_Special
         // Bouton principal qui change l’état et compte les clics
         private void button1_Click(object sender, EventArgs e)
         {
-            // choisi une couleur aléatoir
-            Random randomGen = new Random();
-            KnownColor[] names = (KnownColor[])Enum.GetValues(typeof(KnownColor));
-            KnownColor randomColorName = names[randomGen.Next(names.Length)];
-            Color randomColor = Color.FromKnownColor(randomColorName);
-            train = true;
-            clicks = clicks + 1;
-            label13.Text = "Clicks : " + clicks;
+            if ( boocle == false)
+            {
+                train = true;
+                // choisi une couleur aléatoir
+                Random randomGen = new Random();
+                KnownColor[] names = (KnownColor[])Enum.GetValues(typeof(KnownColor));
+                KnownColor randomColorName = names[randomGen.Next(names.Length)];
+                Color randomColor = Color.FromKnownColor(randomColorName);
+                clicks = clicks + 1;
+                label13.Text = "Clicks : " + clicks;
 
                 button1.BackColor = Color.FromKnownColor(randomColorName);
+            }
             
         }
 
@@ -200,7 +198,7 @@ namespace Auto_Clicker_Special
         private void Form1_Load(object sender, EventArgs e) { }
 
         // Timer qui incrémente le chronomètre si le mode entrainement est actif
-        private void temps_Tick(object sender, EventArgs e)
+        private async void temps_Tick(object sender, EventArgs e)
         {
             if (train == false)
             {
@@ -209,9 +207,26 @@ namespace Auto_Clicker_Special
             }
             if (train == true)
             {
-                chrono = chrono + 1;
+                chrono++;
                 label14.Text = "Timer :" + chrono;
+                if (chrono == 5)
+                {
+                    train = false;
+                    boocle = true;
+                    int cps = clicks / chrono;
+                    label13.Text = "Clicks : 0";
+                    label14.Text = "Timer : 0";
+                    MessageBox.Show("Vous avez fait : " + cps + " CPS (Clicks par secondes)");
+                    clicks = 0;
+                    chrono = 0;
+                    train = false;
+                    button1.Text = "Wait...";
+                    await Task.Delay(2000);
+                    button1.Text = "Training";
+                    boocle = false;
+                }
             }
+            
         }
 
         // Bouton pour calculer les CPS (clics par seconde)
